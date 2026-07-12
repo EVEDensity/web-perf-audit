@@ -1,0 +1,25 @@
+{
+  "name": "web-perf-audit",
+  "version": "1.0.0",
+  "description": "Automated web performance audit skill for Claude Code — multi-stage pipeline: SCAN → ANALYZE → SCORE → REPORT",
+  "type": "module",
+  "scripts": {
+    "scan": "python scripts/fetch_metrics.py",
+    "analyze:critical-path": "python scripts/analyze_critical_path.py",
+    "analyze:hints": "python scripts/check_resource_hints.py",
+    "analyze:images": "python scripts/audit_images.py",
+    "analyze:fonts": "python scripts/audit_fonts.py",
+    "analyze:js": "node scripts/audit_js_bundles.js",
+    "analyze": "npm run analyze:critical-path & npm run analyze:hints & npm run analyze:images & npm run analyze:fonts & npm run analyze:js & wait",
+    "score": "python scripts/score_and_report.py",
+    "diff": "python scripts/diff_report.py",
+    "full": "npm run scan && npm run analyze && npm run score"
+  },
+  "dependencies": {
+    "puppeteer": "^22.0.0"
+  },
+  "devDependencies": {},
+  "keywords": ["web-performance", "core-web-vitals", "lighthouse", "claude-skill"],
+  "author": "",
+  "license": "MIT"
+}

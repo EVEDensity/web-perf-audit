@@ -1,0 +1,48 @@
+# .webperfignore — 排除不可控的第三方资源
+# 匹配规则：简单字符串包含匹配（域名/filename pattern）
+
+# === 统计与分析 ===
+google-analytics.com
+googletagmanager.com
+gtag.js
+analytics.js
+
+# === 社交平台嵌入 ===
+facebook.net
+connect.facebook.net
+platform.twitter.com
+platform.instagram.com
+linkedin.com
+
+# === 广告 ===
+doubleclick.net
+googlesyndication.com
+criteo.com
+adnxs.com
+
+# === 监控/错误上报 ===
+newrelic.com
+sentry.io
+datadoghq.com
+sentry-cdn.com
+logrocket.com
+
+# === CDN（如果自建 CDN 不是优化目标） ===
+cdnjs.cloudflare.com
+unpkg.com
+jsdelivr.net
+
+# === 聊天/客服 Widget ===
+intercom.io
+zendesk.com
+tawk.to
+livechatinc.com
+
+# === A/B 测试 ===
+optimizely.com
+googleoptimize.com
+
+# === 其他常见第三方 ===
+hotjar.com
+clarity.ms
+fullstory.com

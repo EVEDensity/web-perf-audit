@@ -1,0 +1,53 @@
+{
+  "name": "web-perf-audit",
+  "version": "1.0.0",
+  "description": "Automated web performance audit pipeline — SCAN → ANALYZE → SCORE → REPORT. Turn any URL into a prioritized, code-level optimization plan with CWV impact estimates.",
+  "author": {
+    "name": "Density"
+  },
+  "license": "MIT",
+  "keywords": [
+    "performance",
+    "core-web-vitals",
+    "lighthouse",
+    "lcp",
+    "cls",
+    "inp",
+    "tbt",
+    "audit",
+    "optimization",
+    "web.dev"
+  ],
+  "category": "development",
+  "homepage": "https://github.com/Density-G/to-be-published",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Density-G/web-perf-audit"
+  },
+  "icon": "🚀",
+  "skills": [
+    {
+      "name": "web-perf-audit",
+      "description": "审计并优化网页/站点的加载性能与交互响应性（Core Web Vitals: LCP/CLS/INP/TBT）。当用户提到"网站慢""首屏优化""Lighthouse 分数低""性能审计""图片/字体/JS 优化"或粘贴了一个网址想知道"为什么加载慢"时，都应主动使用本技能。",
+      "type": "prompt",
+      "entry": "SKILL.md"
+    }
+  ],
+  "requirements": {
+    "python": ">=3.8",
+    "node": ">=18.0.0",
+    "system": [
+      {
+        "name": "Lighthouse CLI",
+        "install": "npm install -g lighthouse",
+        "optional": false
+      },
+      {
+        "name": "Puppeteer",
+        "install": "npm install puppeteer",
+        "optional": false
+      }
+    ]
+  },
+  "strict": false
+}

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Performance Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --border: #334155;
+      --text: #e2e8f0;
+      --text-secondary: #94a3b8;
+      --green: #22c55e;
+      --yellow: #eab308;
+      --red: #ef4444;
+      --blue: #3b82f6;
+      --purple: #8b5cf6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .header h1 { font-size: 2rem; font-weight: 700; }
+    .header .url { color: var(--text-secondary); font-size: 0.95rem; word-break: break-all; }
+    .header .timestamp { color: var(--text-secondary); font-size: 0.85rem; }
+
+    /* Score Circle */
+    .score-section {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .score-circle {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 6px solid var(--border);
+      position: relative;
+    }
+    .score-circle .score-value { font-size: 2.5rem; font-weight: 800; line-height: 1; }
+    .score-circle .score-grade { font-size: 1.2rem; font-weight: 600; }
+    .score-circle.grade-A { border-color: var(--green); color: var(--green); }
+    .score-circle.grade-B { border-color: var(--blue); color: var(--blue); }
+    .score-circle.grade-C { border-color: var(--yellow); color: var(--yellow); }
+    .score-circle.grade-D { border-color: var(--red); color: var(--red); }
+    .score-circle.grade-F { border-color: var(--red); color: var(--red); }
+
+    /* Cards */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.25rem; margin-bottom: 2rem; }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .card h3 { font-size: 1.05rem; margin-bottom: 1rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* Metrics */
+    .metric-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .metric-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 0.8rem;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+    }
+    .metric-item .metric-name { font-weight: 600; }
+    .metric-item .metric-value { font-size: 1.1rem; font-weight: 700; }
+    .good { color: var(--green); }
+    .needs-improvement { color: var(--yellow); }
+    .poor { color: var(--red); }
+
+    /* Issues */
+    .issue-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .issue-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.6rem 0.8rem;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.02);
+      font-size: 0.9rem;
+    }
+    .issue-item .badge {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .badge-P0 { background: rgba(239,68,68,0.2); color: var(--red); }
+    .badge-P1 { background: rgba(234,179,8,0.2); color: var(--yellow); }
+    .badge-P2 { background: rgba(148,163,184,0.2); color: var(--text-secondary); }
+
+    /* Chart containers */
+    .chart-wrapper { position: relative; height: 250px; }
+    .chart-wrapper canvas { width: 100% !important; }
+
+    /* Comparison */
+    .comparison { margin-top: 1rem; padding: 1rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
+    .comparison.improved { border-left: 3px solid var(--green); }
+    .comparison.declined { border-left: 3px solid var(--red); }
+    .comparison.unchanged { border-left: 3px solid var(--text-secondary); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body { padding: 1rem; }
+      .score-section { flex-direction: column; align-items: center; text-align: center; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div>
+        <h1>🚀 Web Performance Dashboard</h1>
+        <p class="url" id="pageUrl"></p>
+        <p class="timestamp" id="timestamp"></p>
+      </div>
+    </div>
+
+    <!-- Score -->
+    <div class="score-section">
+      <div class="score-circle" id="scoreCircle">
+        <span class="score-value" id="scoreValue">--</span>
+        <span class="score-grade" id="scoreGrade">--</span>
+      </div>
+      <div style="flex:1;">
+        <p style="font-size:1.1rem; font-weight:600;" id="scoreText"></p>
+        <p style="color:var(--text-secondary);" id="issueSummary"></p>
+      </div>
+    </div>
+
+    <!-- Metrics Grid -->
+    <div class="grid">
+      <!-- Core Web Vitals -->
+      <div class="card">
+        <h3>📊 Core Web Vitals</h3>
+        <div class="metric-list" id="cwvMetrics"></div>
+      </div>
+
+      <!-- Category Breakdown -->
+      <div class="card">
+        <h3>📈 Category Scores</h3>
+        <div class="chart-wrapper">
+          <canvas id="categoryChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Issues -->
+    <div class="card" style="margin-bottom:2rem;">
+      <h3>🔍 Top Issues (Priority-Ordered)</h3>
+      <div class="issue-list" id="issueList"></div>
+    </div>
+
+    <!-- Comparison -->
+    <div class="card" id="comparisonCard" style="display:none; margin-bottom:2rem;">
+      <h3>📉 vs Previous Audit</h3>
+      <div id="comparisonContent"></div>
+    </div>
+
+    <!-- Footer -->
+    <p style="text-align:center; color:var(--text-secondary); font-size:0.85rem; margin-top:2rem;">
+      Generated by web-perf-audit · Powered by web.dev Learn Performance & Lighthouse
+    </p>
+  </div>
+
+  <script>
+    // Load audit data from embedded JSON or fetch
+    async function loadData() {
+      // Try to load from query param or default path
+      const params = new URLSearchParams(window.location.search);
+      const dataPath = params.get('data') || '../.web-perf/audit-report.json';
+
+      try {
+        const resp = await fetch(dataPath);
+        return await resp.json();
+      } catch {
+        // If fetch fails, check for inline data
+        if (window.__AUDIT_DATA__) return window.__AUDIT_DATA__;
+        console.error('Could not load audit data from:', dataPath);
+        return null;
+      }
+    }
+
+    function getCWVClass(rating) {
+      if (rating === 'good') return 'good';
+      if (rating === 'needs-improvement') return 'needs-improvement';
+      return 'poor';
+    }
+
+    async function render() {
+      const data = await loadData();
+      if (!data) {
+        document.body.innerHTML = '<div style="text-align:center;padding:4rem;"><h2>No audit data available</h2><p>Run the web-perf-audit skill first to generate data.</p></div>';
+        return;
+      }
+
+      // Page info
+      document.getElementById('pageUrl').textContent = 'URL: ' + (data.url || 'N/A');
+      document.getElementById('timestamp').textContent = data.timestamp || '';
+
+      // Score
+      const overall = data.overallScore || {};
+      const score = overall.overallScore || 0;
+      const grade = overall.grade || 'N/A';
+
+      const circle = document.getElementById('scoreCircle');
+      circle.className = 'score-circle grade-' + (grade.charAt(0).toUpperCase());
+      document.getElementById('scoreValue').textContent = score;
+      document.getElementById('scoreGrade').textContent = grade;
+
+      const gradeMessages = {
+        'A+': 'Excellent! Your page is well-optimized.',
+        'A': 'Great performance. Minor tweaks possible.',
+        'B': 'Good foundation. Several optimizations available.',
+        'C': 'Needs attention. Focus on the P0 issues below.',
+        'D': 'Poor performance. Significant improvements needed.',
+        'F': 'Critical issues. Immediate action recommended.',
+      };
+      document.getElementById('scoreText').textContent = gradeMessages[grade] || '';
+
+      // Issue summary
+      const issueSummary = data.issueSummary || {};
+      document.getElementById('issueSummary').textContent =
+        `${issueSummary.total || 0} issues (${issueSummary.p0 || 0} P0, ${issueSummary.p1 || 0} P1, ${issueSummary.p2 || 0} P2)`;
+
+      // CWV Metrics
+      const metrics = data.metrics || {};
+      const cwvDiv = document.getElementById('cwvMetrics');
+      const metricOrder = ['lcp', 'fcp', 'cls', 'tbt', 'inp'];
+      for (const key of metricOrder) {
+        const m = metrics[key];
+        if (!m) continue;
+        const ratingClass = getCWVClass(m.rating);
+        const estimated = m.estimated ? ' *' : '';
+        cwvDiv.innerHTML += `
+          <div class="metric-item">
+            <span class="metric-name">${key.toUpperCase()}${estimated}</span>
+            <span class="metric-value ${ratingClass}">${m.displayValue || m.value} <small>(${m.rating || 'N/A'})</small></span>
+          </div>`;
+      }
+      if (!cwvDiv.innerHTML) {
+        cwvDiv.innerHTML = '<p style="color:var(--text-secondary)">No CWV data available</p>';
+      }
+
+      // Category Chart
+      const breakdown = overall.breakdown || {};
+      const labels = Object.keys(breakdown);
+      const scoresData = labels.map(k => breakdown[k].rawScore);
+      const weightsData = labels.map(k => parseFloat(breakdown[k].weight));
+
+      new Chart(document.getElementById('categoryChart'), {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Score',
+            data: scoresData,
+            backgroundColor: scoresData.map(s => s >= 75 ? '#22c55e99' : s >= 50 ? '#eab30899' : '#ef444499'),
+            borderColor: scoresData.map(s => s >= 75 ? '#22c55e' : s >= 50 ? '#eab308' : '#ef4444'),
+            borderWidth: 1,
+            borderRadius: 4,
+          }],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, max: 100, ticks: { color: '#94a3b8' }, grid: { color: '#334155' } },
+            x: { ticks: { color: '#94a3b8', maxRotation: 45 }, grid: { display: false } },
+          },
+        },
+      });
+
+      // Issues
+      const allIssues = data.allIssues || [];
+      const issueDiv = document.getElementById('issueList');
+      const topIssues = allIssues.slice(0, 15);
+      if (topIssues.length === 0) {
+        issueDiv.innerHTML = '<p style="color:var(--green)">✅ No issues detected!</p>';
+      } else {
+        for (const issue of topIssues) {
+          const priority = issue.priority || 'P2';
+          issueDiv.innerHTML += `
+            <div class="issue-item">
+              <span class="badge badge-${priority}">${priority}</span>
+              <div>
+                <strong>[${issue.type || 'unknown'}]</strong>
+                ${issue.description || ''}
+                ${issue.resource ? `<br><small style="color:var(--text-secondary)">Resource: ${issue.resource}</small>` : ''}
+              </div>
+            </div>`;
+        }
+      }
+
+      // Comparison
+      const comparison = data.comparison;
+      if (comparison && comparison.previousScore !== undefined) {
+        const compCard = document.getElementById('comparisonCard');
+        compCard.style.display = 'block';
+        const compDiv = document.getElementById('comparisonContent');
+        const change = comparison.change || 0;
+        const dir = comparison.direction || 'unchanged';
+        compDiv.className = 'comparison ' + dir;
+        compDiv.innerHTML = `
+          <p><strong>Previous Score:</strong> ${comparison.previousScore} →
+             <strong>Current Score:</strong> ${comparison.currentScore}
+             (${change >= 0 ? '+' : ''}${change})</p>
+          <p><strong>Direction:</strong> ${dir.toUpperCase()}</p>
+          <p style="color:var(--text-secondary); font-size:0.85rem;">Previous audit: ${comparison.previousAuditTime || 'N/A'}</p>
+        `;
+      }
+    }
+
+    render();
+  </script>
+</body>
+</html>
