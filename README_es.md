@@ -1,3 +1,27 @@
+<h1 align="center">web-perf-audit</h1>
+
+<p align="center">
+  <a href="README.md">English</a>&nbsp;·&nbsp;
+  <a href="README_zh-CN.md">简体中文</a>&nbsp;·&nbsp;
+  <a href="README_zh-TW.md">繁體中文</a>&nbsp;·&nbsp;
+  <a href="README_ja.md">日本語</a>&nbsp;·&nbsp;
+  <a href="README_ko.md">한국어</a>&nbsp;·&nbsp;
+  📖 <b>Español</b>&nbsp;·&nbsp;
+  <a href="README_tr.md">Türkçe</a>&nbsp;·&nbsp;
+  <a href="README_ru.md">Русский</a>
+</p>
+
+<p align="center">
+  <strong>Soluciones que se implementan > consejos que se quedan en un dashboard.</strong><br>
+  Multi-Agent Web Performance Audit Pipeline — SCAN → ANALYZE → SCORE → REPORT.<br>
+  Not another Lighthouse wrapper. A complete audit-to-fix workflow with CWV impact estimates.<br>
+  Works with <strong>Claude Code, Cursor, VSCode Copilot,</strong> and any CI pipeline.
+</p>
+
+<p align="center">
+  <img src="docs/pipeline.png" alt="web-perf-audit pipeline: SCAN → ANALYZE → SCORE → REPORT" width="800">
+</p>
+
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/logo-dark.svg">
@@ -34,26 +58,6 @@
   <a href="#">
     <img src="https://img.shields.io/badge/PLATFORM-win_|_mac_|_linux-6b7280?style=for-the-badge&logo=linux&logoColor=white&labelColor=1e293b" alt="Platform">
   </a>
-</p>
-
-<h1 align="center">web-perf-audit</h1>
-
-<p align="center">
-  <a href="README.md">English</a>&nbsp;·&nbsp;
-  <a href="README_zh-CN.md">简体中文</a>&nbsp;·&nbsp;
-  <a href="README_zh-TW.md">繁體中文</a>&nbsp;·&nbsp;
-  <a href="README_ja.md">日本語</a>&nbsp;·&nbsp;
-  <a href="README_ko.md">한국어</a>&nbsp;·&nbsp;
-  📖 <b>Español</b>&nbsp;·&nbsp;
-  <a href="README_tr.md">Türkçe</a>&nbsp;·&nbsp;
-  <a href="README_ru.md">Русский</a>
-</p>
-
-<p align="center">
-  <strong>Soluciones que se implementan > consejos que se quedan en un dashboard.</strong><br>
-  Pipeline de auditoría multi-agente: SCAN → ANALYZE → SCORE → REPORT.<br>
-  Basado en los estándares oficiales de web.dev. Cada problema incluye código listo para copiar y pegar.<br>
-  Compatible con <strong>Claude Code, Cursor, VSCode Copilot</strong> y cualquier pipeline de CI.
 </p>
 
 <p align="center">

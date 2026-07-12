@@ -1,3 +1,27 @@
+<h1 align="center">web-perf-audit</h1>
+
+<p align="center">
+  <a href="README.md">English</a>&nbsp;·&nbsp;
+  <a href="README_zh-CN.md">简体中文</a>&nbsp;·&nbsp;
+  📖 <b>繁體中文</b>&nbsp;·&nbsp;
+  <a href="README_ja.md">日本語</a>&nbsp;·&nbsp;
+  <a href="README_ko.md">한국어</a>&nbsp;·&nbsp;
+  <a href="README_es.md">Español</a>&nbsp;·&nbsp;
+  <a href="README_tr.md">Türkçe</a>&nbsp;·&nbsp;
+  <a href="README_ru.md">Русский</a>
+</p>
+
+<p align="center">
+  <strong>不只跑分 — 直接給你可直接執行的優化方案。</strong><br>
+  Multi-Agent Web Performance Audit Pipeline — SCAN → ANALYZE → SCORE → REPORT.<br>
+  Not another Lighthouse wrapper. A complete audit-to-fix workflow with CWV impact estimates.<br>
+  Works with <strong>Claude Code, Cursor, VSCode Copilot,</strong> and any CI pipeline.
+</p>
+
+<p align="center">
+  <img src="docs/pipeline.png" alt="web-perf-audit pipeline: SCAN → ANALYZE → SCORE → REPORT" width="800">
+</p>
+
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/logo-dark.svg">
@@ -34,26 +58,6 @@
   <a href="#">
     <img src="https://img.shields.io/badge/PLATFORM-win_|_mac_|_linux-6b7280?style=for-the-badge&logo=linux&logoColor=white&labelColor=1e293b" alt="Platform">
   </a>
-</p>
-
-<h1 align="center">web-perf-audit</h1>
-
-<p align="center">
-  <a href="README.md">English</a>&nbsp;·&nbsp;
-  <a href="README_zh-CN.md">简体中文</a>&nbsp;·&nbsp;
-  📖 <b>繁體中文</b>&nbsp;·&nbsp;
-  <a href="README_ja.md">日本語</a>&nbsp;·&nbsp;
-  <a href="README_ko.md">한국어</a>&nbsp;·&nbsp;
-  <a href="README_es.md">Español</a>&nbsp;·&nbsp;
-  <a href="README_tr.md">Türkçe</a>&nbsp;·&nbsp;
-  <a href="README_ru.md">Русский</a>
-</p>
-
-<p align="center">
-  <strong>不只跑分 — 直接給你可直接執行的優化方案。</strong><br>
-  多 Agent Web 效能審計流水線：SCAN → ANALYZE → SCORE → REPORT。<br>
-  基於 web.dev 官方標準，每個問題都附帶可複製的修復程式碼與預期收益。<br>
-  支援 <strong>Claude Code、Cursor、VSCode Copilot</strong>，以及任意 CI 流水線。
 </p>
 
 <p align="center">

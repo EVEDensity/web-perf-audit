@@ -1,3 +1,27 @@
+<h1 align="center">web-perf-audit</h1>
+
+<p align="center">
+  <a href="README.md">English</a>&nbsp;·&nbsp;
+  <a href="README_zh-CN.md">简体中文</a>&nbsp;·&nbsp;
+  <a href="README_zh-TW.md">繁體中文</a>&nbsp;·&nbsp;
+  <a href="README_ja.md">日本語</a>&nbsp;·&nbsp;
+  <a href="README_ko.md">한국어</a>&nbsp;·&nbsp;
+  <a href="README_es.md">Español</a>&nbsp;·&nbsp;
+  <a href="README_tr.md">Türkçe</a>&nbsp;·&nbsp;
+  📖 <b>Русский</b>
+</p>
+
+<p align="center">
+  <strong>Не просто оценка — готовые к внедрению решения по оптимизации.</strong><br>
+  Multi-Agent Web Performance Audit Pipeline — SCAN → ANALYZE → SCORE → REPORT.<br>
+  Not another Lighthouse wrapper. A complete audit-to-fix workflow with CWV impact estimates.<br>
+  Works with <strong>Claude Code, Cursor, VSCode Copilot,</strong> and any CI pipeline.
+</p>
+
+<p align="center">
+  <img src="docs/pipeline.png" alt="web-perf-audit pipeline: SCAN → ANALYZE → SCORE → REPORT" width="800">
+</p>
+
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/logo-dark.svg">
@@ -34,26 +58,6 @@
   <a href="#">
     <img src="https://img.shields.io/badge/PLATFORM-win_|_mac_|_linux-6b7280?style=for-the-badge&logo=linux&logoColor=white&labelColor=1e293b" alt="Platform">
   </a>
-</p>
-
-<h1 align="center">web-perf-audit</h1>
-
-<p align="center">
-  <a href="README.md">English</a>&nbsp;·&nbsp;
-  <a href="README_zh-CN.md">简体中文</a>&nbsp;·&nbsp;
-  <a href="README_zh-TW.md">繁體中文</a>&nbsp;·&nbsp;
-  <a href="README_ja.md">日本語</a>&nbsp;·&nbsp;
-  <a href="README_ko.md">한국어</a>&nbsp;·&nbsp;
-  <a href="README_es.md">Español</a>&nbsp;·&nbsp;
-  <a href="README_tr.md">Türkçe</a>&nbsp;·&nbsp;
-  📖 <b>Русский</b>
-</p>
-
-<p align="center">
-  <strong>Не просто оценка — готовые к внедрению решения по оптимизации.</strong><br>
-  Мульти-агентный конвейер аудита веб-производительности: SCAN → ANALYZE → SCORE → REPORT.<br>
-  На основе официальных стандартов web.dev. Каждая проблема с готовым кодом исправления.<br>
-  Совместимо с <strong>Claude Code, Cursor, VSCode Copilot</strong> и любым CI-пайплайном.
 </p>
 
 <p align="center">
