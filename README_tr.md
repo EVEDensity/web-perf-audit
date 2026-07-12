@@ -22,12 +22,7 @@
   <img src="docs/pipeline.png" alt="web-perf-audit pipeline: SCAN → ANALYZE → SCORE → REPORT" width="800">
 </p>
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/logo-dark.svg">
-    <img alt="web-perf-audit" src="docs/logo.svg" width="520">
-  </picture>
-</p>
+
 
 <p align="center">
   <a href="https://github.com/EVEDensity/web-perf-audit/stargazers">
@@ -60,9 +55,7 @@
   </a>
 </p>
 
-<p align="center">
-  <code>npx web-perf-audit --url https://example.com --audience dev</code>
-</p>
+
 
 ---
 
