@@ -748,10 +748,6 @@ Use PSI for production monitoring (real-user p75 data). Use Lighthouse CLI for l
 | [AgentHub](https://github.com/EVEDensity/AgentHub) | Multi-agent orchestration platform — web-perf-audit is an official plugin |
 | [MineWorld](https://github.com/EVEDensity/MineWorld) | WebGL voxel engine — the performance lessons that inspired this tool |
 
-### GitHub Topics
-
-Add these to your fork or deployment:
-`web-performance` `core-web-vitals` `lighthouse` `performance-audit` `web-vitals` `claude-code` `devtools` `pagespeed-insights` `webperf` `performance-budget` `ci-cd` `frontend-engineering`
 
 ---
 
