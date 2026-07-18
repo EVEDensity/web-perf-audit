@@ -753,14 +753,14 @@ Use PSI for production monitoring (real-user p75 data). Use Lighthouse CLI for l
 
 ## ⭐ Star History
 
-<p align="center">
-  <a href="https://star-history.com/#EVEDensity/web-perf-audit&Date">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=EVEDensity/web-perf-audit&type=Date&theme=dark">
-      <img src="https://api.star-history.com/svg?repos=EVEDensity/web-perf-audit&type=Date" alt="Star History Chart" width="600">
-    </picture>
-  </a>
-</p>
+
+<a href="https://www.star-history.com/?type=date&repos=EVEDensity%2Fweb-perf-audit">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=EVEDensity/web-perf-audit&type=date&theme=dark&legend=top-left&sealed_token=xGJvapSF9DFQdcqOfESBEXPJsoq_p3ZK-mjniRH1HjbMtTO_z9sCqpetlOkT09HnJSqxmbHhqoWygg5dCSEYvKh7XNc4CA7In-zficE-AsVmi1gUFHucp1IZQSkHrUJFzPMt4wdldeYb-uCyMzkhekj95DAjRCHtAqd1Q7ptRdkG06O3OpNGNKWof-5E" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=EVEDensity/web-perf-audit&type=date&legend=top-left&sealed_token=xGJvapSF9DFQdcqOfESBEXPJsoq_p3ZK-mjniRH1HjbMtTO_z9sCqpetlOkT09HnJSqxmbHhqoWygg5dCSEYvKh7XNc4CA7In-zficE-AsVmi1gUFHucp1IZQSkHrUJFzPMt4wdldeYb-uCyMzkhekj95DAjRCHtAqd1Q7ptRdkG06O3OpNGNKWof-5E" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=EVEDensity/web-perf-audit&type=date&legend=top-left&sealed_token=xGJvapSF9DFQdcqOfESBEXPJsoq_p3ZK-mjniRH1HjbMtTO_z9sCqpetlOkT09HnJSqxmbHhqoWygg5dCSEYvKh7XNc4CA7In-zficE-AsVmi1gUFHucp1IZQSkHrUJFzPMt4wdldeYb-uCyMzkhekj95DAjRCHtAqd1Q7ptRdkG06O3OpNGNKWof-5E" />
+ </picture>
+</a>
 
 ---
 
